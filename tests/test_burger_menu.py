@@ -31,5 +31,20 @@ def test_reset_app_state(logged_in_page):
 
     expect(inventory_page.cart_badge).not_to_be_visible()
 
+def test_about_link(logged_in_page):
+    inventory_page = InventoryPage(logged_in_page)
+    inventory_page.open_burger_menu()
+    inventory_page.about.click()
+
+    expect(inventory_page.page).to_have_url("https://saucelabs.com/")
+
+def test_all_items_link(logged_in_page):
+    inventory_page = InventoryPage(logged_in_page)
+    inventory_page.sauce_labs_backpack.click()
+    inventory_page.open_burger_menu()
+    inventory_page.all_items.click()
+
+    expect(inventory_page.page).to_have_url("https://www.saucedemo.com/inventory.html")
+
 
 

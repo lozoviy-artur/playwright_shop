@@ -34,3 +34,7 @@ class InventoryPage:
     @property
     def cart_badge(self):
         return self.page.locator(".shopping_cart_badge")
+    
+    @property
+    def sauce_labs_backpack(self):
+        return self.page.locator('[data-test*="backpack-img"]')
