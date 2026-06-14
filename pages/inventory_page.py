@@ -9,6 +9,11 @@ class InventoryPage:
 
     def open_burger_menu(self):
         self.page.locator("#react-burger-menu-btn").click()
+ 
+    def add_to_cart(self, item_name):
+        item_locator = self.page.locator(f".inventory_item:has-text('{item_name}')")
+        add_to_cart_button = item_locator.locator("button")
+        add_to_cart_button.click()
 
     @property
     def all_items(self):
@@ -25,3 +30,7 @@ class InventoryPage:
     @property
     def reset(self):
         return self.page.locator("#reset_sidebar_link")
+    
+    @property
+    def cart_badge(self):
+        return self.page.locator(".shopping_cart_badge")

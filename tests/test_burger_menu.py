@@ -23,5 +23,13 @@ def test_loguout(logged_in_page):
     login_page = LoginPage(logged_in_page)
     expect(login_page.login_button).to_be_visible()
 
+def test_reset_app_state(logged_in_page):
+    inventory_page = InventoryPage(logged_in_page)
+    inventory_page.add_to_cart("Sauce Labs Backpack")
+    inventory_page.open_burger_menu()
+    inventory_page.reset.click()
+
+    expect(inventory_page.cart_badge).not_to_be_visible()
+
 
 
