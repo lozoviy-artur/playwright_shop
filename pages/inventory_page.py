@@ -15,6 +15,18 @@ class InventoryPage:
         add_to_cart_button = item_locator.locator("button")
         add_to_cart_button.click()
 
+    def sort_by(self, sort_option):
+        self.page.locator(".product_sort_container").select_option(sort_option)
+
+    def remove_from_cart(self, item_name):
+        item_locator = self.page.locator(f".inventory_item:has-text('{item_name}')")
+        remove_button = item_locator.locator("button:has-text('Remove')")
+        remove_button.click()
+
+    @property
+    def first_product_name(self):
+        return self.page.locator(".inventory_item_name").first
+
     @property
     def all_items(self):
         return self.page.locator("#inventory_sidebar_link")
@@ -38,3 +50,11 @@ class InventoryPage:
     @property
     def sauce_labs_backpack(self):
         return self.page.locator('[data-test*="backpack-img"]')
+    
+    @property
+    def item_names(self):
+        return self.page.locator(".inventory_item_name")
+    
+    @property
+    def item_prices(self):
+        return self.page.locator(".inventory_item_price")
