@@ -58,3 +58,33 @@ class InventoryPage:
     @property
     def item_prices(self):
         return self.page.locator(".inventory_item_price")
+
+    @property
+    def shopping_cart_link(self):
+        return self.page.locator(".shopping_cart_link")
+
+    def go_to_cart(self):
+        self.shopping_cart_link.click()
+
+    @property
+    def checkout_button(self):
+        return self.page.locator('[data-test="checkout"]')
+
+    def checkout(self):
+        self.checkout_button.click()
+
+    def fill_checkout_info(self, first_name, last_name, postal_code):
+        self.page.locator('[data-test="firstName"]').fill(first_name)
+        self.page.locator('[data-test="lastName"]').fill(last_name)
+        self.page.locator('[data-test="postalCode"]').fill(postal_code)
+
+    @property
+    def continue_button(self):
+        return self.page.locator('[data-test="continue"]')
+
+    @property
+    def finish_button(self):
+        return self.page.locator('[data-test="finish"]')
+
+    def finish_checkout(self):
+        self.finish_button.click()
